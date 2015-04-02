@@ -2,11 +2,18 @@ package com.groupe.gestion.compte.metier;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Version;
+
+@Entity
 public class Login implements Serializable {
 	
 	private long idLogin;
 	private String login;
 	private String mdp;
+	
+	@Version
+	private int version;
 	
 	public long getIdLogin() {
 		return idLogin;
@@ -26,5 +33,13 @@ public class Login implements Serializable {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	
 	
 }
