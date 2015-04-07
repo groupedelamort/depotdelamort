@@ -1,7 +1,8 @@
 package com.groupe.gestion.compte.metier;
 
 import java.io.Serializable;
-import java.util.Date;
+
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Reunion implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idReunion;
 	private String titre;
-	private Date dateReunion;
+	private Calendar dateReunion;
 	
 	@OneToMany(mappedBy="id.reunion",fetch=FetchType.LAZY)
 	private List<ClientReunion> clientReunion;
@@ -50,11 +51,11 @@ public class Reunion implements Serializable{
 		this.titre = titre;
 	}
 
-	public Date getDateReunion() {
+	public Calendar getDateReunion() {
 		return dateReunion;
 	}
 
-	public void setDateReunion(Date dateReunion) {
+	public void setDateReunion(Calendar dateReunion) {
 		this.dateReunion = dateReunion;
 	}
 

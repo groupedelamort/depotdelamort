@@ -1,6 +1,7 @@
 package com.groupe.gestion.compte.metier;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -30,6 +31,10 @@ public class Client implements Serializable{
 
 	@OneToMany(mappedBy="id.client",fetch=FetchType.LAZY)
 	private List<ClientReunion> clientReunion;
+	
+	@OneToMany(mappedBy="client",fetch=FetchType.LAZY)
+	private List<Compte> comptes;
+	
 	
 	@Version
 	private int version;
@@ -77,6 +82,14 @@ public class Client implements Serializable{
 
 	public void setClientReunion(List<ClientReunion> clientReunion) {
 		this.clientReunion = clientReunion;
+	}
+
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
 	}
 
 	public int getVersion() {
