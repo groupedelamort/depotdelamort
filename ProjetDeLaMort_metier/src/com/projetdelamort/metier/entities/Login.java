@@ -4,9 +4,12 @@ package com.projetdelamort.metier.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -19,10 +22,11 @@ public class Login implements Serializable {
 	private long idLogin;
 	private String login;
 	private String mdp;
-	/*
-	@OneToOne(mappedBy="login")
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="Client.codeClient")
 	private Client client;
-	*/
+	
 	@Version
 	private int version;
 	

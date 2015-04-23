@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.projetdelamort.metier.entities.Client;
 import com.projetdelamort.metier.entities.Login;
 
 @Service
@@ -12,7 +13,8 @@ public class GenericService<T> implements IService<T> {
 
 	@Autowired
 	DAO dao;
-	
+	@Autowired
+	ISpecificDAO specDAO;
 	
 	@Override
 	public void create(T arg0) {
@@ -39,6 +41,11 @@ public class GenericService<T> implements IService<T> {
 	@Override
 	public void delete(long arg0) {
 		dao.delete(arg0);	
+	}
+	
+	public Client getClientByLogin (Login login){
+		return specDAO.getClientByLogin(login);
+		
 	}
 
 }

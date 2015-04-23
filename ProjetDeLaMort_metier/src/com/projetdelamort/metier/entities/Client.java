@@ -22,13 +22,12 @@ public class Client implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@JoinColumn(name="Logins.idLogin")
 	private long codeClient;
 	
 	private String nom;
 	private String adresse;
 	
-	@OneToOne
+	@OneToOne(mappedBy="client")
 	private Login login;
 
 
