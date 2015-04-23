@@ -43,7 +43,7 @@ public class Compte implements Serializable {
 	private Calendar dateCompte;
 	private double solde;
 
-	@ManyToMany(mappedBy = "comptes", fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Set<Operation> operations;
 
 	public Set<Operation> getOperations() {

@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projetdelamort.metier.entities.Client;
+import com.projetdelamort.metier.entities.Compte;
 import com.projetdelamort.metier.entities.Login;
+import com.projetdelamort.metier.entities.Operation;
 
 @Service
-public class GenericService<T> implements IService<T> {
+public class GenericService<T> implements IService<T>, ISpecificDAO {
 
 	@Autowired
 	DAO dao;
@@ -47,5 +49,18 @@ public class GenericService<T> implements IService<T> {
 		return specDAO.getClientByLogin(login);
 		
 	}
+
+	@Override
+	public Login checkConnection(Login login) {
+		return specDAO.checkConnection(login);
+	}
+
+	@Override
+	public List<Operation> getOperationsByCompte(Compte compte) {
+		return getOperationsByCompte(compte);
+	}
+	
+	
+	
 
 }

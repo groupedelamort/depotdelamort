@@ -2,7 +2,6 @@ package com.projetdelamort.metier.entities;
 
 
 import java.io.Serializable;
-
 import java.util.Date;
 import java.util.Set;
 
@@ -12,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -29,8 +29,8 @@ public class Operation implements Serializable {
 	@Version
 	private int version;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	private Set<Compte> comptes;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Compte compte;
 
 	public long getNumOperation() {
 		return numOperation;
@@ -64,16 +64,6 @@ public class Operation implements Serializable {
 		this.mtRetrait = mtRetrait;
 	}
 
-	public Set<Compte> getComptes() {
-		return comptes;
-	}
-
-	public void setComptes(Set<Compte> comptes) {
-		this.comptes = comptes;
-	}
-
-	
-
 	public int getVersion() {
 		return version;
 	}
@@ -98,7 +88,7 @@ public class Operation implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((comptes == null) ? 0 : comptes.hashCode());
+		result = prime * result + ((compte == null) ? 0 : compte.hashCode());
 		result = prime * result
 				+ ((dateOperation == null) ? 0 : dateOperation.hashCode());
 		long temp;
@@ -107,6 +97,7 @@ public class Operation implements Serializable {
 		temp = Double.doubleToLongBits(mtVersement);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + (int) (numOperation ^ (numOperation >>> 32));
+		result = prime * result + version;
 		return result;
 	}
 
@@ -119,10 +110,10 @@ public class Operation implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Operation other = (Operation) obj;
-		if (comptes == null) {
-			if (other.comptes != null)
+		if (compte == null) {
+			if (other.compte != null)
 				return false;
-		} else if (!comptes.equals(other.comptes))
+		} else if (!compte.equals(other.compte))
 			return false;
 		if (dateOperation == null) {
 			if (other.dateOperation != null)
@@ -137,7 +128,17 @@ public class Operation implements Serializable {
 			return false;
 		if (numOperation != other.numOperation)
 			return false;
+		if (version != other.version)
+			return false;
 		return true;
+	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 }
