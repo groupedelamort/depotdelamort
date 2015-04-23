@@ -3,8 +3,11 @@ package com.projetdelamort.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Transaction;
 import org.hibernate.Session;
+
+import com.projetdelamort.metier.services.DAO;
 
 public class GenericDAO<T> implements DAO<T> {
 
@@ -18,7 +21,7 @@ public class GenericDAO<T> implements DAO<T> {
 	public GenericDAO(Class<T> genericDAOClass) {
 		this.genericDAOClass = genericDAOClass;
 	}
-
+	
 	@Override
 	public void create(T arg0) {
 		Transaction tx = null;

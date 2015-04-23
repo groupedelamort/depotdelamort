@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projetdelamort.metier.services.DAO;
+
 @Repository("genericSpringDAO")
 @Transactional
 public class GenericSpringDAO<T> implements DAO<T> {
