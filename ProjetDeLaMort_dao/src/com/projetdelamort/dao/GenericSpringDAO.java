@@ -46,6 +46,7 @@ public class GenericSpringDAO<T> implements DAO<T> {
 	}
 		
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> readAll() {
 		return getSession().createQuery("from " + this.getGenericDAOClass().getName()).list();
